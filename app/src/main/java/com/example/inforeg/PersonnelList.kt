@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.inforeg.DBManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PersonnelList : AppCompatActivity() {
 
@@ -87,8 +88,28 @@ class PersonnelList : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_personnel_list, menu)
+        val bnv_main = findViewById<BottomNavigationView>(R.id.bnv_main)
+        bnv_main.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.first -> {
+                    val intent = Intent(this, PersonnelList::class.java)
+                    startActivity(intent)
+                }
+                R.id.second -> {
+                    val intent = Intent(this, PersonnelReg::class.java)
+                    startActivity(intent)
+                }
+                R.id.third -> {
+                    val intent = Intent(this, PersonnelSet::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
         return true
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId) {
